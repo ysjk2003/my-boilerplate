@@ -1,3 +1,4 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
@@ -69,6 +70,7 @@ module.exports = {
             ? [new MiniCssExtractPlugin({ filename: `[name].css` }), new webpack.HotModuleReplacementPlugin()]
             : []),
           new MiniCssExtractPlugin(),
+          new CleanWebpackPlugin(),
     ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
