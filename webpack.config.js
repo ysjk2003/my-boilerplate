@@ -8,7 +8,7 @@ const mode = process.env.NODE_ENV || 'development';
 module.exports = {
     mode: mode,
     entry: {
-        main: '.src/index.js'
+        main: './src/index.ts'
     },
     output: {
         path: path.resolve('./dist'),
@@ -16,6 +16,11 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
             {
                 test: /\.css$/ ,
                 use: [
@@ -64,5 +69,8 @@ module.exports = {
             ? [new MiniCssExtractPlugin({ filename: `[name].css` }), new webpack.HotModuleReplacementPlugin()]
             : []),
           new MiniCssExtractPlugin(),
-    ]
+    ],
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
 }
